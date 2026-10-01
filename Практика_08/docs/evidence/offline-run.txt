@@ -1,0 +1,14 @@
+Команды:
+GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline clean check
+GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline run --args=--smoke
+
+Результат clean check:
+- BUILD SUCCESSFUL in 1s
+- 14 тестов PASSED
+- 7 actionable tasks: 7 executed
+
+Результат smoke:
+- FXML и CSS загружены из classpath
+- связанных полей формы: 3
+- начальное число строк: 1
+- BUILD SUCCESSFUL in 1s

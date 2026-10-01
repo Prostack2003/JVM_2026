@@ -1,0 +1,11 @@
+Команда:
+GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew clean check
+
+Результат:
+- BUILD SUCCESSFUL in 1s
+- 7 actionable tasks: 7 executed
+- 14 JUnit-тестов PASSED
+- NutritionPlanServiceTest: 5 PASSED
+- NutritionPlanTest: 7 PASSED
+- FxmlResourceTest: 2 PASSED
+- FXML и CSS найдены в собранном JAR
