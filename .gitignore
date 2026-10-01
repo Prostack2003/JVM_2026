@@ -1,0 +1,8 @@
+.practice-git-backups/
+**/.gradle/
+**/build/
+**/out/
+**/.idea/
+*.iml
+*.log
+
