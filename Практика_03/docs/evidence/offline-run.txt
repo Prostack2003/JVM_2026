@@ -1,0 +1,18 @@
+$ ./gradlew --offline clean test run --console=plain
+
+NutritionPlanTest > Пустое название отклоняется PASSED
+NutritionPlanTest > Нулевой идентификатор допустим до сохранения PASSED
+NutritionPlanTest > Смена состояния создаёт новую запись PASSED
+NutritionPlanTest > Отсутствующее состояние отклоняется PASSED
+NutritionPlanTest > Отсутствующая дата отклоняется PASSED
+NutritionPlanTest > Отсутствующее название отклоняется PASSED
+NutritionPlanTest > Отрицательный идентификатор отклоняется PASSED
+NutritionPlanTest > Корректные поля создают план и нормализуют название PASSED
+
+Исходная запись: 1 | Снижение массы | 2026-10-01 | DRAFT
+Новая запись: 1 | Снижение массы | 2026-10-01 | ACTIVE
+Исходная запись сохранена: true
+Создан новый объект: true
+
+BUILD SUCCESSFUL
+Код завершения: 0

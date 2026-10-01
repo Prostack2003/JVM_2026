@@ -1,0 +1,13 @@
+$ ./gradlew clean test --console=plain
+
+NutritionPlanTest > Пустое название отклоняется PASSED
+NutritionPlanTest > Нулевой идентификатор допустим до сохранения PASSED
+NutritionPlanTest > Смена состояния создаёт новую запись PASSED
+NutritionPlanTest > Отсутствующее состояние отклоняется PASSED
+NutritionPlanTest > Отсутствующая дата отклоняется PASSED
+NutritionPlanTest > Отсутствующее название отклоняется PASSED
+NutritionPlanTest > Отрицательный идентификатор отклоняется PASSED
+NutritionPlanTest > Корректные поля создают план и нормализуют название PASSED
+
+Итог XML-отчёта: tests="8", skipped="0", failures="0", errors="0".
+BUILD SUCCESSFUL
