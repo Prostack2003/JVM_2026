@@ -1,0 +1,15 @@
+$ ./gradlew --offline clean check testTransactions runLessonDemo
+
+45 основных JUnit-тестов PASSED.
+18 профильных тестов транзакций и миграций PASSED.
+FXML, CSS, V001, V002 и оба CSV найдены в JAR.
+Корректный пакет, rollback дубликата и повтор мигратора подтверждены.
+BUILD SUCCESSFUL
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML и CSS загружены из classpath.
+Связанных полей формы: 3.
+Начальное число строк: 1.
+Открыт файл `.lesson-data/nutrition-plans.db`.
+BUILD SUCCESSFUL
