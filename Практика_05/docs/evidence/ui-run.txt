@@ -1,0 +1,18 @@
+Команда основного приложения:
+env GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline run --args=--smoke --console=plain
+
+Наблюдаемый вывод:
+JavaFX-окно показано
+Начальное число строк: 1
+
+Итог:
+BUILD SUCCESSFUL
+
+Команда воспроизводимого прогона состояний:
+env GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline captureEvidence --console=plain
+
+Наблюдаемый вывод:
+Первый запуск: строк=1
+Успешный ввод: строк=2; План «Поддержание массы» добавлен
+Пустой ввод: строк=2; Введите непустое название плана питания
+Изменение размеров: элементы доступны; одно нажатие: строк=3

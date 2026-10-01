@@ -1,0 +1,16 @@
+Команда:
+env GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline clean check captureEvidence --console=plain
+
+JUnit:
+- NutritionPlanTest: 8 тестов, 0 пропусков, 0 ошибок, 0 сбоев
+- NutritionPlanServiceTest: 5 тестов, 0 пропусков, 0 ошибок, 0 сбоев
+- Всего: 13 тестов
+
+JavaFX-сценарии:
+- Первый запуск: строк=1
+- Успешный ввод: строк=2; План «Поддержание массы» добавлен
+- Пустой ввод: строк=2; Введите непустое название плана питания
+- Изменение размеров: элементы доступны; одно нажатие: строк=3
+
+Итог:
+BUILD SUCCESSFUL

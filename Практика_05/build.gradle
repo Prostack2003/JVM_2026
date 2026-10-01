@@ -1,0 +1,83 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+group = 'ru.npi.kbju'
+version = '5.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    modularity.inferModulePath = true
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+def currentOs = org.gradle.internal.os.OperatingSystem.current()
+def javafxOs = currentOs.isWindows() ? 'win' : (currentOs.isMacOsX() ? 'mac' : 'linux')
+def javafxArch = System.getProperty('os.arch') in ['aarch64', 'arm64'] ? '-aarch64' : ''
+def javafxClassifier = javafxOs + javafxArch
+
+dependencies {
+    implementation "org.openjfx:javafx-base:25:${javafxClassifier}"
+    implementation "org.openjfx:javafx-graphics:25:${javafxClassifier}"
+    implementation "org.openjfx:javafx-controls:25:${javafxClassifier}"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.13.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.13.4'
+}
+
+application {
+    mainModule = 'ru.npi.kbju.desktop'
+    mainClass = 'ru.npi.kbju.Launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:all']
+}
+
+tasks.withType(JavaExec).configureEach {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+    systemProperty 'file.encoding', 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('captureEvidence', JavaExec) {
+    group = 'verification'
+    description = 'Запускает JavaFX-сценарии и сохраняет снимки состояний интерфейса.'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainModule = 'ru.npi.kbju.desktop'
+    mainClass = 'ru.npi.kbju.ui.UiEvidenceLauncher'
+    args layout.projectDirectory.dir('docs/evidence').asFile.absolutePath
+    jvmArgs "--patch-module=ru.npi.kbju.desktop=${sourceSets.test.output.classesDirs.asPath}"
+    jvmArgs '--enable-native-access=javafx.graphics'
+}
+
+run {
+    jvmArgs '--enable-native-access=javafx.graphics'
+}
+
+tasks.register('preflight') {
+    group = 'verification'
+    doLast {
+        println "Проект: ${project.name}"
+        println "Gradle: ${gradle.gradleVersion}"
+        println "JVM Gradle: ${System.getProperty('java.version')}"
+        println "ОС: ${System.getProperty('os.name')}"
+        println "JavaFX classifier: ${javafxClassifier}"
+    }
+}

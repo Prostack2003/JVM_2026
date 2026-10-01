@@ -1,0 +1,19 @@
+Автономная проверка выполнена после загрузки зависимостей.
+
+Команда 1:
+env GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline clean check captureEvidence --console=plain
+
+Результат:
+- исходники и тесты скомпилированы заново;
+- 13 тестов пройдены;
+- JavaFX-сценарии выполнены, включая добавление одной строки после изменения размера;
+- снимки состояний обновлены;
+- BUILD SUCCESSFUL.
+
+Команда 2:
+env GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline run --args=--smoke --console=plain
+
+Результат:
+- фактическое JavaFX-окно показано;
+- начальное число строк равно 1;
+- BUILD SUCCESSFUL.
