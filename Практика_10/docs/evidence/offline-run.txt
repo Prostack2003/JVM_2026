@@ -1,0 +1,16 @@
+$ ./gradlew --offline clean check testObservation runLessonDemo
+
+27 основных JUnit-тестов PASSED.
+7 отдельных тестов аннотаций и proxy PASSED.
+FXML и CSS найдены в JAR.
+Консольная матрица практики 10 пройдена.
+BUILD SUCCESSFUL
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML и CSS загружены из classpath.
+Связанных полей формы: 3.
+Начальное число строк: 1.
+Контроллер получает данные через NutritionPlanOperations.
+Отмеченных предметных вызовов: 0.
+BUILD SUCCESSFUL
