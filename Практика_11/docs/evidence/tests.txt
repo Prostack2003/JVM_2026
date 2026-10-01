@@ -1,0 +1,17 @@
+$ ./gradlew clean check testDatabase runLessonDemo
+
+Основной набор JUnit: 35 тестов, 0 ошибок, 0 пропусков.
+- ArchitectureBoundaryTest: 4 PASSED
+- NutritionPlanServiceTest: 4 PASSED
+- ObservedNutritionPlanServiceTest: 5 PASSED
+- OperationCatalogTest: 2 PASSED
+- NutritionPlanTest: 7 PASSED
+- DatabaseSchemaResourceTest: 1 PASSED
+- MemoryNutritionPlanRepositoryTest: 3 PASSED
+- SqliteNutritionPlanRepositoryTest: 7 PASSED
+- FxmlResourceTest: 2 PASSED
+
+Отдельная задача testDatabase: 8 тестов PASSED.
+FXML, CSS и V001 найдены в собранном JAR.
+Компиляция с -Xlint:all завершилась без предупреждений.
+BUILD SUCCESSFUL

@@ -1,0 +1,15 @@
+$ ./gradlew --offline clean check testDatabase runLessonDemo
+
+35 основных JUnit-тестов PASSED.
+8 отдельных SQLite-тестов PASSED.
+FXML, CSS и V001 найдены в JAR.
+SQLite-demo с повторным открытием пройдено.
+BUILD SUCCESSFUL
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML и CSS загружены из classpath.
+Связанных полей формы: 3.
+Начальное число строк: 1.
+Открыт файл `.lesson-data/nutrition-plans.db`.
+BUILD SUCCESSFUL

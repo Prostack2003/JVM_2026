@@ -1,0 +1,88 @@
+/* Семантические стили экрана: здесь нет предметных правил и обработчиков. */
+.app-root {
+    -fx-background-color: #f4f7f9;
+    -fx-font-family: "DejaVu Sans", "Arial", sans-serif;
+    -fx-font-size: 13px;
+}
+
+.header {
+    -fx-background-color: linear-gradient(to right, #123b52, #176b72);
+}
+
+.title {
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.subtitle,
+.counter {
+    -fx-text-fill: #d7edf0;
+}
+
+.counter {
+    -fx-font-weight: bold;
+}
+
+.form-panel {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #dce5e8;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(22, 59, 75, 0.12), 18, 0.1, 0, 4);
+}
+
+.section-title {
+    -fx-text-fill: #123b52;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.section-subtitle {
+    -fx-text-fill: #254d5d;
+    -fx-font-weight: bold;
+}
+
+.hint,
+.message-label {
+    -fx-text-fill: #526d78;
+}
+
+.field-error {
+    -fx-text-fill: #9b1c31;
+    -fx-font-weight: bold;
+}
+
+.primary-button {
+    -fx-background-color: #147d75;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.primary-button:hover {
+    -fx-background-color: #0e6b64;
+}
+
+.danger-button {
+    -fx-text-fill: #8b2d2d;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #dce5e8;
+    -fx-border-radius: 8;
+}
+
+.text-field:focused,
+.combo-box:focused {
+    -fx-border-color: #147d75;
+    -fx-border-radius: 4;
+}
+
+.text-field:invalid,
+.combo-box:invalid {
+    -fx-border-color: #9b1c31;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-color: #fff7f8;
+}
