@@ -1,0 +1,17 @@
+$ ./gradlew clean check --console=plain
+
+CountMapTest > TreeMap сортирует результат по коду PASSED
+CountMapTest > Снимок нельзя изменить PASSED
+CountMapTest > Снимок не меняется вслед за счётчиком PASSED
+CountMapTest > Отсутствующие источник и приёмник отклоняются PASSED
+CountMapTest > Самообъединение удваивает значения PASSED
+CountMapTest > copyTo записывает в карту надтипа PASSED
+CountMapTest > Обобщённый счётчик поддерживает Integer PASSED
+CountMapTest > Пустой счётчик возвращает ноль PASSED
+CountMapTest > Удаление возвращает прежнюю кратность PASSED
+CountMapTest > Повторные коды увеличивают кратность PASSED
+CountMapTest > Отсутствующий ключ отклоняется PASSED
+CountMapTest > Объединение суммирует повторы и сохраняет источник PASSED
+
+Итог XML-отчёта: tests="12", skipped="0", failures="0", errors="0".
+BUILD SUCCESSFUL
