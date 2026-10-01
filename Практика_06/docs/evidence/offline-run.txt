@@ -1,0 +1,14 @@
+Команды:
+./gradlew --offline clean check captureEvidence
+./gradlew --offline run --args=--smoke
+
+Фактический результат первой команды:
+- 14 из 14 JUnit-проверок пройдено.
+- Все шесть JavaFX-сценариев пройдено.
+- BUILD SUCCESSFUL in 2s.
+
+Фактический вывод smoke-запуска:
+JavaFX-окно показано
+Начальное число строк: 1
+Связанный счётчик: Планов: 1
+BUILD SUCCESSFUL in 1s.

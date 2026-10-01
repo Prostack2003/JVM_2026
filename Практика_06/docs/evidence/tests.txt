@@ -1,0 +1,9 @@
+Команда:
+./gradlew clean check
+
+Фактический результат:
+- NutritionPlanServiceTest: 9 проверок пройдено.
+- NutritionPlanTest: 5 проверок пройдено.
+- Всего: 14 из 14, ошибок и пропусков нет.
+- Компиляция завершена без предупреждений.
+- BUILD SUCCESSFUL.
