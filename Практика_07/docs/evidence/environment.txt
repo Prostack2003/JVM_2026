@@ -1,0 +1,24 @@
+Команды:
++ java -version
++ javac -version
++ GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline --version
++ GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline preflight
+
+openjdk version "25.0.4" 2026-07-21
+OpenJDK Runtime Environment (build 25.0.4+7-1-26.04-Ubuntu)
+OpenJDK 64-Bit Server VM (build 25.0.4+7-1-26.04-Ubuntu, mixed mode, sharing)
+javac 25.0.4
+
+Gradle 9.1.0
+Build time: 2025-09-18 13:05:56 UTC
+Launcher JVM: 25.0.4 (Ubuntu 25.0.4+7-1-26.04-Ubuntu)
+Daemon JVM: /usr/lib/jvm/java-25-openjdk-amd64
+OS: Linux 7.0.0-31-generic amd64
+
+Проект: jvm-practice-07
+Gradle: 9.1.0
+JVM Gradle: 25.0.4
+ОС: Linux
+JavaFX classifier: linux
+
+BUILD SUCCESSFUL

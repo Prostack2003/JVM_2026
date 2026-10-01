@@ -1,0 +1,14 @@
+Команда:
+GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline clean check
+
+NutritionPlanServiceTest: 10 PASSED
+NutritionPlanTest: 5 PASSED
+FxmlResourceTest: 2 PASSED
+
+Всего: 17 PASSED, 0 FAILED, 0 SKIPPED.
+
+Проверка содержимого JAR:
+Ресурс в JAR: ru/npi/kbju/ui/main-view.fxml
+Ресурс в JAR: ru/npi/kbju/ui/style.css
+
+BUILD SUCCESSFUL

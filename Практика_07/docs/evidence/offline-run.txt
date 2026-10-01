@@ -1,0 +1,16 @@
+Итоговая автономная команда:
+GRADLE_USER_HOME=/tmp/kbju-practice-01-gradle ./gradlew --offline clean check captureEvidence run --args=--smoke
+
+Выполнено:
+- чистая компиляция Java 25;
+- упаковка JAR;
+- 17 JUnit-проверок;
+- проверка FXML и CSS внутри JAR;
+- фактическая загрузка FXML и CSS;
+- сохранение значений трёх полей;
+- снимки компактного и расширенного окна;
+- отказ на временной копии со сломанным fx:id;
+- smoke-запуск рабочего приложения.
+
+BUILD SUCCESSFUL in 4s
+9 actionable tasks: 9 executed
