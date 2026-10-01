@@ -1,0 +1,49 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+group = 'ru.npi.kbju'
+version = '2.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+application {
+    mainClass = 'ru.npi.kbju.Practice02App'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:all']
+}
+
+tasks.withType(JavaExec).configureEach {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+    systemProperty 'file.encoding', 'UTF-8'
+}
+
+tasks.register('preflight') {
+    doLast {
+        println "Проект: ${project.name}"
+        println "Gradle: ${gradle.gradleVersion}"
+        println "JVM Gradle: ${System.getProperty('java.version')}"
+        println "ОС: ${System.getProperty('os.name')}"
+    }
+}
+
+tasks.register('runChecks', JavaExec) {
+    group = 'verification'
+    description = 'Проверяет предметные и граничные сценарии практики 02.'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'ru.npi.kbju.Practice02Checks'
+}
+
+tasks.named('check') {
+    dependsOn 'runChecks'
+}

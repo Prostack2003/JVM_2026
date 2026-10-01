@@ -1,0 +1,13 @@
+$ javac -Xlint:all OffByOneDemo.java
+Код завершения: 0
+
+$ java OffByOneDemo
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+    at OffByOneDemo.main(OffByOneDemo.java:15)
+Код завершения: 1
+
+Эксперимент выполнен во временной копии с условием:
+
+for (int index = 0; index <= plannedDates.length; index++)
+
+Рабочий исходник использует `index < plannedDates.length`.
