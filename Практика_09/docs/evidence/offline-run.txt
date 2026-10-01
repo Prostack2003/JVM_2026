@@ -1,0 +1,14 @@
+$ ./gradlew --offline clean check testService
+
+20 основных JUnit-тестов PASSED.
+4 отдельных сервисных теста PASSED.
+FXML и CSS найдены в JAR.
+BUILD SUCCESSFUL
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML и CSS загружены из classpath.
+Связанных полей формы: 3.
+Начальное число строк: 1.
+Контроллер получает данные через NutritionPlanService.
+BUILD SUCCESSFUL

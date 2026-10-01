@@ -1,0 +1,18 @@
+$ ./gradlew clean check testService
+
+Основной набор JUnit: 20 тестов, 0 ошибок, 0 пропусков.
+- ArchitectureBoundaryTest: 4 PASSED
+- NutritionPlanServiceTest: 4 PASSED
+- NutritionPlanTest: 7 PASSED
+- MemoryNutritionPlanRepositoryTest: 3 PASSED
+- FxmlResourceTest: 2 PASSED
+
+Отдельная задача testService:
+- NutritionPlanServiceTest: 4 PASSED
+- JavaFX-окно не запускалось
+
+Проверка JAR:
+- ru/npi/kbju/ui/main-view.fxml найден
+- ru/npi/kbju/ui/style.css найден
+
+BUILD SUCCESSFUL
