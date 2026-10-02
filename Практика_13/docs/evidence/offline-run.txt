@@ -1,0 +1,11 @@
+$ ./gradlew --offline clean check testBackground
+
+53 основных теста: PASSED
+10 профильных запусков: PASSED
+8 actionable tasks: 8 executed
+BUILD SUCCESSFUL in 2s
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML/CSS загружены из classpath; SQLite: 1 строка.
+BUILD SUCCESSFUL in 1s

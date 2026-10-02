@@ -1,0 +1,6 @@
+$ ./gradlew clean check testBackground --console=plain
+
+53 основных JUnit-теста: PASSED
+10 профильных запусков testBackground: PASSED
+FXML, CSS, V001, V002 и оба CSV найдены в JAR.
+BUILD SUCCESSFUL in 3s
