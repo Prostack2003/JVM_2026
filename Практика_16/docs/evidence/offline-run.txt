@@ -1,0 +1,12 @@
+$ ./gradlew --offline clean check testOfflineCatalog runLessonDemo
+
+112 основных запусков: PASSED
+24 профильных запуска: PASSED
+runLessonDemo: все сценарии кэша, retry, TTL и автономного режима подтверждены
+9 actionable tasks: 9 executed
+BUILD SUCCESSFUL in 5s
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML/CSS загружены из classpath; SQLite: 1 строка.
+BUILD SUCCESSFUL in 2s

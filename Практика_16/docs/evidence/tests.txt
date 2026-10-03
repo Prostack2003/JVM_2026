@@ -1,0 +1,14 @@
+$ ./gradlew clean check testOfflineCatalog runLessonDemo
+
+112 основных JUnit-запусков: PASSED
+24 профильных запуска testOfflineCatalog: PASSED
+  - атомарное обновление прикладного каталога: 3 сценария
+  - retry, fallback, TTL и конкуренция: 7 сценариев
+  - чтение и атомарная запись файлового кэша: 3 сценария
+  - JSON-маппинг и валидация: 4 сценария
+  - HTTP, таймаут и освобождение порта: 6 сценариев
+  - реальный HTTP + файловый кэш: 1 сквозной сценарий
+FXML, CSS, V001, V002 и оба CSV найдены в JAR.
+runLessonDemo: свежие данные, fallback после двух попыток, защита хорошего
+кэша, NO_SAVED_DATA, CORRUPT_CACHE, граница TTL и восстановление сервера.
+BUILD SUCCESSFUL in 5s
