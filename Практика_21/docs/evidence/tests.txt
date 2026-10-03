@@ -1,0 +1,10 @@
+Команда: ./gradlew --offline clean check
+Повторений полного прогона: 2
+
+Основной набор test: 146 тестовых вызовов, 0 отказов.
+Специализированный testExtensions: 3 теста, 0 отказов.
+verifyJarContents: успешно.
+verifyMissingProviderFailure: ожидаемый код приложения 1 подтверждён.
+verifyPackagedResources: успешно.
+
+Итог обоих прогонов: BUILD SUCCESSFUL.

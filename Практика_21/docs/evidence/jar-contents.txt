@@ -1,0 +1,12 @@
+Артефакт: build/libs/jvm-practice-21-21.0.0.jar
+
+ru/npi/kbju/lesson/PluginDemo.class
+ru/npi/kbju/report/CompactNutritionReport.class
+ru/npi/kbju/report/DailyNutritionSummary.class
+ru/npi/kbju/report/NutritionReportPlugin.class
+ru/npi/kbju/report/PlainNutritionReport.class
+META-INF/services/ru.npi.kbju.report.NutritionReportPlugin
+ru/npi/kbju/ui/main-view.fxml
+ru/npi/kbju/ui/style.css
+
+verifyJarContents: поставщиков в descriptor — 2.

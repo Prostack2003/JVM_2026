@@ -1,0 +1,8 @@
+Команда: ./gradlew --offline verifyMissingProviderFailure
+Проверяемый артефакт: jvm-practice-21-21.0.0-without-services.jar
+
+Ожидаемый отказ подтверждён, код: 1
+java.lang.IllegalStateException:
+Поставщики отчётов не найдены: проверьте META-INF/services
+
+Gradle-задача приняла этот ненулевой запуск как ожидаемый отрицательный сценарий.

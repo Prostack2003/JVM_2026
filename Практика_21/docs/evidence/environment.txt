@@ -1,0 +1,6 @@
+Дата: 2026-10-03
+OpenJDK: 25.0.4
+javac: 25.0.4
+Gradle Wrapper: 9.1.0
+ОС: Linux 7.0.0-31-generic amd64
+Режим финальных проверок: --offline
