@@ -1,0 +1,12 @@
+$ ./gradlew --offline clean check testHttpJson runLessonDemo
+
+101 основной запуск: PASSED
+13 профильных запусков: PASSED
+runLessonDemo: все HTTP/JSON-сценарии практики 15 подтверждены
+9 actionable tasks: 9 executed
+BUILD SUCCESSFUL in 5s
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML/CSS загружены из classpath; SQLite: 1 строка.
+BUILD SUCCESSFUL in 1s

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "products": [
+    {
+      "code": "FOOD-001",
+      "name": "Гречневая крупа",
+      "energyKcal": 343,
+      "proteinGrams": 13.3,
+      "fatGrams": 3.4,
+      "carbohydrateGrams": 71.5
+    },
+    {
+      "code": "FOOD-002",
+      "name": "Куриная грудка",
+      "energyKcal": 165,
+      "proteinGrams": 31.0,
+      "fatGrams": 3.6,
+      "carbohydrateGrams": 0.0
+    },
+    {
+      "code": "FOOD-003",
+      "name": "Яблоко",
+      "energyKcal": 52,
+      "proteinGrams": 0.3,
+      "fatGrams": 0.2,
+      "carbohydrateGrams": 14.0
+    }
+  ]
+}

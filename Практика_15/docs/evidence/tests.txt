@@ -1,0 +1,10 @@
+$ ./gradlew clean check testHttpJson runLessonDemo
+
+101 основной JUnit-запуск: PASSED
+13 профильных запусков testHttpJson: PASSED
+  - атомарное обновление каталога: 3 сценария
+  - JSON-маппинг и валидация: 4 сценария
+  - HTTP, таймаут и освобождение порта: 6 сценариев
+FXML, CSS, V001, V002 и оба CSV найдены в JAR.
+runLessonDemo: 200/3 записи, HTTP_STATUS, MALFORMED_JSON, CONTRACT, порт освобождён.
+BUILD SUCCESSFUL in 5s
