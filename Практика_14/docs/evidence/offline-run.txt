@@ -1,0 +1,12 @@
+$ ./gradlew --offline clean check testConcurrency runLessonDemo
+
+87 основных запусков: PASSED
+34 профильных запуска: PASSED
+runLessonDemo: все сценарии практики 14 подтверждены
+9 actionable tasks: 9 executed
+BUILD SUCCESSFUL in 2s
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML/CSS загружены из classpath; SQLite: 1 строка.
+BUILD SUCCESSFUL in 1s

@@ -1,0 +1,10 @@
+$ ./gradlew clean check testConcurrency runLessonDemo
+
+87 основных JUnit-запусков: PASSED
+34 профильных запуска testConcurrency: PASSED
+  - детерминированная гонка: 20 повторов
+  - пакет диагностик: 4 сценария
+  - отмена ожидающей задачи: 10 повторов
+FXML, CSS, V001, V002 и оба CSV найдены в JAR.
+runLessonDemo: unsafe=1, atomic=2, completed=3, cancelled=true, active=0.
+BUILD SUCCESSFUL in 2s

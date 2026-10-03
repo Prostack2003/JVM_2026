@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.npi.kbju.ui.MainController"
+            prefWidth="1180" prefHeight="820" styleClass="app-root">
+    <top>
+        <VBox spacing="5" styleClass="header">
+            <padding><Insets top="20" right="24" bottom="16" left="24"/></padding>
+            <Label text="Дневник питания КБЖУ" styleClass="title"/>
+            <Label text="Фоновый аудит с прогрессом и кооперативной отменой" styleClass="subtitle"/>
+            <Label fx:id="countLabel" text="Планов: 0" styleClass="counter"/>
+        </VBox>
+    </top>
+    <center>
+        <HBox spacing="18" fillHeight="true">
+            <padding><Insets top="18" right="24" bottom="24" left="24"/></padding>
+            <VBox spacing="10" HBox.hgrow="ALWAYS" minWidth="430">
+                <Label text="Список планов" styleClass="section-title"/>
+                <TableView fx:id="planTable" VBox.vgrow="ALWAYS"
+                           minWidth="430" prefWidth="430" maxWidth="Infinity"
+                           accessibleText="Таблица сохранённых планов питания">
+                    <placeholder><Label text="Планы питания ещё не добавлены"/></placeholder>
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID" minWidth="55" prefWidth="65"
+                                     maxWidth="85"/>
+                        <TableColumn fx:id="nameColumn" text="Название плана" minWidth="170"
+                                     prefWidth="250"/>
+                        <TableColumn fx:id="dateColumn" text="Дата начала" minWidth="115"
+                                     prefWidth="125"/>
+                        <TableColumn fx:id="statusColumn" text="Состояние" minWidth="130"
+                                     prefWidth="155"/>
+                    </columns>
+                </TableView>
+            </VBox>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" HBox.hgrow="NEVER"
+                        minWidth="365" prefWidth="385" maxWidth="410"
+                        styleClass="form-scroll">
+                <content>
+                    <VBox fx:id="formPanel" spacing="7" minWidth="340"
+                          prefWidth="360" maxWidth="390" styleClass="form-panel">
+                        <padding><Insets top="18" right="20" bottom="18" left="20"/></padding>
+                        <Label text="Новый план" styleClass="section-title"/>
+                        <Label text="Поля сохраняются после ошибки; пример даты: 2026-11-01"
+                               wrapText="true" styleClass="hint"/>
+
+                <Label fx:id="nameLabel" text="_Название плана"
+                       mnemonicParsing="true"/>
+                <TextField fx:id="nameField" promptText="Не более 60 символов"
+                           onAction="#addPlan"/>
+                <Label fx:id="nameError" text="" visible="false" wrapText="true"
+                       styleClass="field-error"/>
+
+                <Label fx:id="dateLabel" text="_Дата начала (ГГГГ-ММ-ДД)"
+                       mnemonicParsing="true"/>
+                <TextField fx:id="effectiveFromField" promptText="2026-11-01"
+                           onAction="#addPlan"/>
+                <Label fx:id="dateError" text="" visible="false" wrapText="true"
+                       styleClass="field-error"/>
+
+                <Label fx:id="statusLabel" text="_Состояние" mnemonicParsing="true"/>
+                <ComboBox fx:id="statusBox" maxWidth="Infinity"/>
+                <Label fx:id="statusError" text="" visible="false" wrapText="true"
+                       styleClass="field-error"/>
+
+                <Button fx:id="addButton" text="Сохранить план" defaultButton="true"
+                        onAction="#addPlan" maxWidth="Infinity" styleClass="primary-button"/>
+
+                <Separator/>
+                <Label text="Действия с выбранной строкой" styleClass="section-subtitle"/>
+                <Button fx:id="activateButton" text="Сделать активным"
+                        onAction="#activateSelectedPlan" maxWidth="Infinity"/>
+                <Button fx:id="removeButton" text="Удалить выбранный"
+                        onAction="#removeSelectedPlan" maxWidth="Infinity"
+                        styleClass="danger-button"/>
+                        <Label fx:id="messageLabel" text="Загрузка формы…" wrapText="true"
+                               styleClass="message-label"/>
+
+                        <Separator/>
+                        <Label text="Фоновый аудит" styleClass="section-title"/>
+                        <Label text="Проверяется неизменяемый снимок. Форма остаётся отзывчивой."
+                               wrapText="true" styleClass="hint"/>
+                        <ProgressBar fx:id="auditProgressBar" progress="0" maxWidth="Infinity"
+                                     accessibleText="Прогресс аудита планов"/>
+                        <Label fx:id="auditStatusLabel" text="Аудит ещё не запускался"
+                               wrapText="true" styleClass="audit-status"/>
+                        <Label fx:id="auditResultLabel" text="Подтверждённый результ отсутствует"
+                               wrapText="true" styleClass="audit-result"/>
+                        <HBox spacing="8">
+                            <Button fx:id="startAuditButton" text="Начать аудит"
+                                    onAction="#startAudit" styleClass="primary-button"/>
+                            <Button fx:id="cancelAuditButton" text="Отменить"
+                                    onAction="#cancelAudit" disable="true"/>
+                        </HBox>
+                        <CheckBox fx:id="controlledFailureCheck"
+                                  text="Учебный отказ на 4-м шаге"
+                                  accessibleText="Включить контролируемый отказ аудита"/>
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </HBox>
+    </center>
+</BorderPane>
