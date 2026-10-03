@@ -1,0 +1,12 @@
+$ ./gradlew --offline clean check testDomainRules
+
+120 основных JUnit-запусков: PASSED
+15 профильных запусков: PASSED
+8 actionable tasks: 8 executed
+BUILD SUCCESSFUL in 3s
+
+$ ./gradlew --offline run --args="--smoke"
+
+FXML и CSS загружены из classpath.
+SQLite: 1 строка из Практика_17/.lesson-data/nutrition-plans.db.
+BUILD SUCCESSFUL in 1s

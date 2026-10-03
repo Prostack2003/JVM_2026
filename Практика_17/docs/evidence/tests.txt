@@ -1,0 +1,20 @@
+$ ./gradlew clean testDomainRules
+
+15 JUnit-запусков: PASSED
+  - обычная допустимая запись и отдельный нулевой ID: 2
+  - варианты отсутствующего/пустого имени: 6 параметров
+  - граница длины 60/61: 2
+  - отрицательный ID: 1
+  - обязательные дата и статус: 2
+  - успешный и недопустимый withStatus: 2
+BUILD SUCCESSFUL in 1s
+
+Команда выполнена дважды после возврата временной мутации.
+Оба чистых прогона дали тот же результат: 15 passed, 0 failed.
+
+$ ./gradlew clean check testDomainRules
+
+120 основных JUnit-запусков: PASSED
+15 профильных запусков testDomainRules: PASSED
+FXML, CSS, V001, V002 и оба CSV найдены в JAR.
+BUILD SUCCESSFUL in 3s

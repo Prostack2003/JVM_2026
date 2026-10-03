@@ -1,0 +1,12 @@
+$ ./gradlew run --args="--smoke"
+
+FXML загружен из classpath: /ru/npi/kbju/ui/main-view.fxml
+CSS загружен из classpath: /ru/npi/kbju/ui/style.css
+Связанных полей формы: 3
+Начальное число строк: 1
+Контроллер получает данные через NutritionPlanOperations
+Отмеченных предметных вызовов: 0
+Файл SQLite: Практика_17/.lesson-data/nutrition-plans.db
+BUILD SUCCESSFUL in 1s
+
+Повтор с `--offline`: та же база, 1 строка, BUILD SUCCESSFUL in 1s.
