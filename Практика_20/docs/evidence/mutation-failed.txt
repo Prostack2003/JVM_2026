@@ -1,0 +1,21 @@
+$ ./gradlew testDomainRules
+
+Временная мутация:
+  value == null || value.isBlank()
+заменена на:
+  value == null
+
+NutritionPlanTest > rejectsEveryBlankNameVariant(String)
+  [1] <null>     PASSED
+  [2] <empty>    FAILED
+  [3] <space>    FAILED
+  [4] <spaces>   FAILED
+  [5] <tab>      FAILED
+  [6] <newline>  FAILED
+
+15 tests completed, 5 failed
+Execution failed for task ':testDomainRules'.
+BUILD FAILED in 1s
+Код завершения: 1
+
+После фиксации результата условие с isBlank() возвращено до следующих запусков.

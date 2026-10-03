@@ -1,0 +1,12 @@
+Команда: ./gradlew --offline run --args="--smoke"
+Результат: BUILD SUCCESSFUL.
+FXML загружен из classpath: /ru/npi/kbju/ui/main-view.fxml
+CSS загружен из classpath: /ru/npi/kbju/ui/style.css
+Связанных полей формы: 3
+Начальное число строк: 1
+Контроллер получает данные через NutritionPlanOperations
+Отмеченных предметных вызовов: 0
+Источник настроек: EXTERNAL_FILE
+Корень данных: Практика_20/.lesson-data
+Каталог журнала: Практика_20/.lesson-data/logs
+Файл SQLite: Практика_20/.lesson-data/data/nutrition-plans.db

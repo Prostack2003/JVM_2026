@@ -1,0 +1,23 @@
+Команда: ./gradlew runLessonDemo
+Результат: BUILD SUCCESSFUL.
+
+Штатный файл config/application.properties:
+- источник: EXTERNAL_FILE;
+- база: .lesson-data/data/nutrition-plans.db;
+- журнал: .lesson-data/logs;
+- резервные копии: .lesson-data/backup.
+
+Отдельная учебная конфигурация:
+./gradlew runLessonDemo \
+  -PkbjuDataDir=/tmp/kbju-practice19-custom-SrNobe \
+  -PkbjuConfig=docs/examples/application-custom.properties
+Результат: BUILD SUCCESSFUL.
+- база: custom-data/plans.db;
+- журнал: diagnostic-log;
+- резервные копии: backup-snapshots;
+- все относительные пути разрешены от указанного учебного корня.
+
+Контролируемый отказ сформировал разные представления:
+- пользователь получил действие и код события;
+- журнал получил eventId, operation=PLAN_SAVE и reason=STORAGE_UNAVAILABLE;
+- тестовый токен и содержимое личного плана в журнал не попали.

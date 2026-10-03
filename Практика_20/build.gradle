@@ -1,0 +1,347 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+group = 'ru.npi.kbju'
+version = '20.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    modularity.inferModulePath = true
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+def currentOs = org.gradle.internal.os.OperatingSystem.current()
+def javafxOs = currentOs.isWindows() ? 'win' : (currentOs.isMacOsX() ? 'mac' : 'linux')
+def javafxArch = System.getProperty('os.arch') in ['aarch64', 'arm64'] ? '-aarch64' : ''
+def javafxClassifier = javafxOs + javafxArch
+def configuredProjectName = project.name
+def configuredDataDirectory = providers.gradleProperty('kbjuDataDir')
+        .orElse(layout.projectDirectory.dir('.lesson-data').asFile.absolutePath)
+def configuredConfigFile = providers.gradleProperty('kbjuConfig')
+
+dependencies {
+    implementation "org.openjfx:javafx-base:25:${javafxClassifier}"
+    implementation "org.openjfx:javafx-graphics:25:${javafxClassifier}"
+    implementation "org.openjfx:javafx-controls:25:${javafxClassifier}"
+    implementation "org.openjfx:javafx-fxml:25:${javafxClassifier}"
+    implementation 'org.xerial:sqlite-jdbc:3.50.3.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.20.0'
+    runtimeOnly 'org.slf4j:slf4j-nop:2.0.17'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.13.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.13.4'
+}
+
+application {
+    mainModule = 'ru.npi.kbju.desktop'
+    mainClass = 'ru.npi.kbju.Launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:all']
+}
+
+tasks.withType(JavaExec).configureEach {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+    systemProperty 'file.encoding', 'UTF-8'
+    jvmArgs '--enable-native-access=javafx.graphics,org.xerial.sqlitejdbc,ALL-UNNAMED'
+}
+
+tasks.withType(Test).configureEach {
+    jvmArgs '--enable-native-access=ALL-UNNAMED'
+    maxParallelForks = 1
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testService', Test) {
+    group = 'verification'
+    description = 'Запускает прикладные сценарии без открытия JavaFX-окна.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.application.NutritionPlanServiceTest'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testObservation', Test) {
+    group = 'verification'
+    description = 'Проверяет аннотации, счётчик proxy и передачу исходных исключений.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.application.observation.*'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('runLessonDemo', JavaExec) {
+    group = 'application'
+    description = 'Создаёт согласованный снимок и безопасно восстанавливает его в новый файл.'
+    dependsOn classes
+    classpath = sourceSets.main.runtimeClasspath
+    mainModule = 'ru.npi.kbju.desktop'
+    mainClass = 'ru.npi.kbju.lesson.BackupRecoveryDemo'
+    systemProperty 'kbju.data.dir', configuredDataDirectory.get()
+    if (configuredConfigFile.isPresent()) {
+        systemProperty 'kbju.config', configuredConfigFile.get()
+    }
+}
+
+tasks.register('runReflectionDemo', JavaExec) {
+    group = 'application'
+    description = 'Повторяет демонстрацию аннотаций и proxy из практики 10.'
+    dependsOn classes
+    classpath = sourceSets.main.runtimeClasspath
+    mainModule = 'ru.npi.kbju.desktop'
+    mainClass = 'ru.npi.kbju.lesson.ReflectionDemo'
+}
+
+tasks.register('testDatabase', Test) {
+    group = 'verification'
+    description = 'Запускает интеграционные проверки SQLite во временных каталогах.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.infrastructure.Sqlite*'
+        includeTestsMatching 'ru.npi.kbju.infrastructure.DatabaseSchema*'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testTransactions', Test) {
+    group = 'verification'
+    description = 'Проверяет CSV, пакетную транзакцию и обновление схемы V001 → V002.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.application.importing.*'
+        includeTestsMatching 'ru.npi.kbju.infrastructure.SchemaMigrator*'
+        includeTestsMatching 'ru.npi.kbju.infrastructure.Sqlite*'
+        includeTestsMatching 'ru.npi.kbju.infrastructure.DatabaseSchema*'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testBackground', Test) {
+    group = 'verification'
+    description = 'Проверяет успех, отмену, отказ и границу JavaFX Task.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.application.audit.*'
+        includeTestsMatching 'ru.npi.kbju.ui.AuditTaskSourceContractTest'
+        includeTestsMatching 'ru.npi.kbju.ui.FxmlResourceTest'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testConcurrency', Test) {
+    group = 'verification'
+    description = 'Проверяет гонку, атомарный счётчик, Future, отмену и закрытие executor.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.application.concurrency.*'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testHttpJson', Test) {
+    group = 'verification'
+    description = 'Проверяет HTTP-клиент, JSON-контракт, атомарную замену каталога и закрытие сервера.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.application.catalog.*'
+        includeTestsMatching 'ru.npi.kbju.integration.http.*'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testOfflineCatalog', Test) {
+    group = 'verification'
+    description = 'Проверяет атомарный кэш, bounded retry, TTL, автономные состояния и запрет параллельного refresh.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.application.catalog.*'
+        includeTestsMatching 'ru.npi.kbju.integration.cache.*'
+        includeTestsMatching 'ru.npi.kbju.integration.http.*'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testDomainRules', Test) {
+    group = 'verification'
+    description = 'Проверяет допустимый план, границы входов и неизменяемую смену состояния.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.domain.NutritionPlanTest'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testIntegrationAndUi', Test) {
+    group = 'verification'
+    description = 'Проверяет временную SQLite, classpath-ресурсы и JavaFX-маршрут ввода.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.infrastructure.SqliteNutritionPlanRepositoryTest'
+        includeTestsMatching 'ru.npi.kbju.ui.FxmlResourceTest'
+        includeTestsMatching 'ru.npi.kbju.ui.JavaFxUserJourneyTest'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testDiagnostics', Test) {
+    group = 'verification'
+    description = 'Проверяет внешние настройки, значения по умолчанию и журнал без секретов.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.infrastructure.AppConfigTest'
+        includeTestsMatching 'ru.npi.kbju.infrastructure.ApplicationLogTest'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('testBackupRecovery', Test) {
+    group = 'verification'
+    description = 'Проверяет согласованный снимок, целостность и восстановление только в новый файл.'
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    filter {
+        includeTestsMatching 'ru.npi.kbju.infrastructure.SqliteBackupServiceTest'
+    }
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+tasks.register('verifyPackagedResources') {
+    group = 'verification'
+    description = 'Проверяет наличие FXML и CSS в собранном JAR.'
+    dependsOn jar
+    doLast {
+        def archive = tasks.jar.archiveFile.get().asFile
+        def expected = [
+                'ru/npi/kbju/ui/main-view.fxml',
+                'ru/npi/kbju/ui/style.css',
+                'ru/npi/kbju/infrastructure/db/migration/V001__nutrition_plans.sql',
+                'ru/npi/kbju/infrastructure/db/migration/V002__add_import_code.sql',
+                'ru/npi/kbju/lesson/import/plans-valid.csv',
+                'ru/npi/kbju/lesson/import/plans-duplicate-code.csv'
+        ]
+        new java.util.zip.ZipFile(archive).withCloseable { zip ->
+            expected.each { path ->
+                if (zip.getEntry(path) == null) {
+                    throw new GradleException("В JAR отсутствует ресурс: ${path}")
+                }
+                println "Ресурс в JAR: ${path}"
+            }
+        }
+    }
+}
+
+check.dependsOn verifyPackagedResources
+
+tasks.register('captureEvidence', JavaExec) {
+    group = 'verification'
+    description = 'Проверяет цепочку UI → сервис → репозиторий и устойчивый ID после сортировки.'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainModule = 'ru.npi.kbju.desktop'
+    mainClass = 'ru.npi.kbju.ui.UiEvidenceLauncher'
+    args layout.projectDirectory.dir('docs/evidence').asFile.absolutePath
+    def patchPath = files(
+            sourceSets.test.output.classesDirs,
+            sourceSets.main.output.resourcesDir
+    ).asPath
+    jvmArgs "--patch-module=ru.npi.kbju.desktop=${patchPath}"
+}
+
+tasks.register('captureAuditEvidence', JavaExec) {
+    group = 'verification'
+    description = 'Проходит UI-сценарии успеха, отмены, отказа и повтора со снимками.'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainModule = 'ru.npi.kbju.desktop'
+    mainClass = 'ru.npi.kbju.ui.AuditEvidenceLauncher'
+    args layout.projectDirectory.dir('docs/evidence').asFile.absolutePath
+    def patchPath = files(
+            sourceSets.test.output.classesDirs,
+            sourceSets.main.output.resourcesDir
+    ).asPath
+    jvmArgs "--patch-module=ru.npi.kbju.desktop=${patchPath}"
+}
+
+run {
+    systemProperty 'kbju.data.dir', configuredDataDirectory.get()
+    if (configuredConfigFile.isPresent()) {
+        systemProperty 'kbju.config', configuredConfigFile.get()
+    }
+}
+
+tasks.register('preflight') {
+    group = 'verification'
+    doLast {
+        println "Проект: ${configuredProjectName}"
+        println "Gradle: ${gradle.gradleVersion}"
+        println "JVM Gradle: ${System.getProperty('java.version')}"
+        println "ОС: ${System.getProperty('os.name')}"
+        println "JavaFX classifier: ${javafxClassifier}"
+    }
+}
