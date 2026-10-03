@@ -1,0 +1,6 @@
+Команда: ./gradlew --offline clean check
+Результат: BUILD SUCCESSFUL; 124 тестовых вызова, 0 отказов.
+Gradle использовал подготовленный локальный кэш; обращение к сети не требовалось.
+
+Команда: ./gradlew --offline run --args="--smoke"
+Результат: BUILD SUCCESSFUL.

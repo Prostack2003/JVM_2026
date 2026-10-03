@@ -1,0 +1,15 @@
+$ ./gradlew runLessonDemo
+
+Практика 14: исполнители, виртуальные потоки и гонки данных
+Прогноз: два обычных increment дадут 1, два атомарных — 2.
+Гонка: unsafe=1, atomic=2, executor closed=true
+Диагностика: submitted=3, completed=3, executor closed=true
+  ID 101: Поддержание массы — состояние допустимо
+  ID 102: Коррекция белка — требуется пересмотр
+  ID 103: Восстановительный день — состояние допустимо
+Отказ: причина сохранена — учебный отказ диагностики ID 102
+Отмена: cancelled=true, interrupted=true, active=0, executor closed=true
+Граница: JDBC читает планы до запуска; задачи делят только immutable snapshot.
+Итог: все сценарии практики 14 подтверждены.
+
+BUILD SUCCESSFUL
