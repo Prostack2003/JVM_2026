@@ -1,0 +1,13 @@
+Дата: 2026-10-04
+
+java -version
+openjdk version "25.0.4.1" 2026-08-18
+OpenJDK Runtime Environment (build 25.0.4.1+1-1-26.04.4-Ubuntu)
+OpenJDK 64-Bit Server VM (build 25.0.4.1+1-1-26.04.4-Ubuntu, mixed mode, sharing)
+
+javac -version
+javac 25.0.4.1
+
+Gradle Wrapper: 9.1.0
+Kotlin Gradle Plugin и stdlib проекта: 2.4.10
+ОС: Linux 7.0.0-31-generic amd64

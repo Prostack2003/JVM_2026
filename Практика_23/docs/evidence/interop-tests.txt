@@ -1,0 +1,12 @@
+Команда:
+./gradlew --offline clean check runLessonDemo --warning-mode all
+
+Результат:
+- BUILD SUCCESSFUL;
+- 152 тестовых вызова в основном наборе, 0 отказов;
+- KotlinInteropTest: 4 сценария, 0 отказов;
+- предупреждений Gradle о deprecated API нет.
+
+Java-клиент из installDist и runLessonDemo:
+План #23: Поддержание рациона [ACTIVE], действует с 2026-10-23
+Null-контракт: План питания обязателен

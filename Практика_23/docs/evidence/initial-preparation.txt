@@ -1,0 +1,9 @@
+Первая команда:
+./gradlew --offline clean testInterop verifyKotlinDistribution
+
+Результат: BUILD FAILED до компиляции.
+Причина: Kotlin Gradle Plugin 2.4.10 отсутствовал в локальном кэше.
+
+После однократного запуска с доступом к Gradle Plugin Portal и Maven Central
+тот же сценарий выполняется с --offline. Это ожидаемая подготовка новой
+зависимости, а не предметный отказ приложения.

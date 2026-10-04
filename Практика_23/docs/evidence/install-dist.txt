@@ -1,0 +1,15 @@
+Задача: verifyKotlinDistribution
+
+Основной JAR:
+build/install/jvm-practice-23/lib/jvm-practice-23-23.0.0.jar
+
+Подтверждённые entries:
+module-info.class
+ru/npi/kbju/interop/InteropDemo.class
+ru/npi/kbju/interop/NutritionPlanCaption.class
+
+Kotlin runtime:
+build/install/jvm-practice-23/lib/kotlin-stdlib-2.4.10.jar
+
+Java-процесс получил classpath только из installDist/lib, вывел две ожидаемые
+строки и завершился с кодом 0.

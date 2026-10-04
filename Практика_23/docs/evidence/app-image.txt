@@ -1,0 +1,14 @@
+Команда:
+./gradlew --offline verifyDistribution --warning-mode all
+
+Результат:
+- BUILD SUCCESSFUL;
+- jdeps перечислил kotlin.stdlib;
+- NutritionPlanCaption.class найден в основном JAR app-image;
+- kotlin-stdlib-2.4.10.jar найден в lib/app;
+- app-image скопирован вне проекта и запущен дважды;
+- первый запуск добавил запись через JavaFX-форму;
+- второй запуск нашёл сохранённую запись;
+- SQLite находился вне каталога app-image.
+
+Размер app-image: приблизительно 117 МБ.

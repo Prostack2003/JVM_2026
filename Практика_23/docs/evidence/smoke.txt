@@ -1,0 +1,10 @@
+Команда:
+./gradlew --offline run --args="--smoke" --warning-mode all
+
+Результат:
+- BUILD SUCCESSFUL;
+- FXML и CSS загружены из classpath;
+- связаны 3 поля формы;
+- начальная запись прочитана из SQLite;
+- конфигурация, журнал и база доступны;
+- добавление Kotlin-компонента не изменило UI и схему данных.

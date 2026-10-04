@@ -1,0 +1,9 @@
+Первый Kotlin compile обнаружил неверное предположение о Java-record:
+использовано имя effectiveDate вместо фактического effectiveFrom.
+
+После исправления Kotlin успешно прочитал Java-record, но чистый javac compile
+именованного модуля не увидел Kotlin output. Для compileJava добавлен:
+--patch-module ru.npi.kbju.desktop=<build/classes/kotlin/main>
+
+module-info.java явно содержит requires kotlin.stdlib и экспорт interop-пакета.
+Чистая совместная компиляция и рефлексивный тест JVM-сигнатуры проходят.

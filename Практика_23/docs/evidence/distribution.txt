@@ -1,0 +1,9 @@
+Артефакт:
+build/distributions/KbjuDiary-23.0.0-linux-amd64.tar.gz
+
+Размер архива: приблизительно 55 МБ
+SHA-256:
+ca3dfbc85827e6ca16031f5a46700d0baa73401ee921c511bf975abf20fbe7e4
+
+Файл контрольной суммы:
+build/distributions/KbjuDiary-23.0.0-linux-amd64.tar.gz.sha256
