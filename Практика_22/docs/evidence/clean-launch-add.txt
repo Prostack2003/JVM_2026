@@ -1,0 +1,14 @@
+Задача: verifyPackagedLaunch, первый отдельный процесс
+Режим: --package-probe=add
+
+Проверка app-image: запись добавлена через форму; строк=2
+FXML: /ru/npi/kbju/ui/main-view.fxml
+CSS: /ru/npi/kbju/ui/style.css
+Стили сцены: 1
+Java runtime: <временная копия>/KbjuDiary/lib/runtime
+Корень данных: <отдельный временный каталог данных>
+Файл SQLite: <отдельный временный каталог данных>/data/nutrition-plans.db
+Код завершения: 0
+
+JavaFX вывел известное предупреждение о загрузке классов из unnamed module.
+Окно, FXML, CSS и сохранение записи при этом отработали успешно.

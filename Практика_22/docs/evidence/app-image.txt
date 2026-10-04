@@ -1,0 +1,14 @@
+Задача: verifyAppImage
+
+App-image: build/package/KbjuDiary
+Launcher: build/package/KbjuDiary/bin/KbjuDiary
+Встроенный runtime: build/package/KbjuDiary/lib/runtime
+Основной JAR: build/package/KbjuDiary/lib/app/jvm-practice-22-22.0.0.jar
+
+Подтверждено:
+- launcher существует и исполняем;
+- runtime встроен;
+- FXML, CSS и META-INF/services находятся в основном JAR;
+- абсолютного пути исходного проекта в launcher cfg нет;
+- изменяемых .db и .log в образе нет;
+- размер app-image: приблизительно 116 МБ.

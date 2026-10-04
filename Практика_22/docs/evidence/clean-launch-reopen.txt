@@ -1,0 +1,13 @@
+Задача: verifyPackagedLaunch, второй отдельный процесс
+Режим: --package-probe=verify
+
+Проверка app-image: сохранённая запись найдена; строк=2
+FXML: /ru/npi/kbju/ui/main-view.fxml
+CSS: /ru/npi/kbju/ui/style.css
+Стили сцены: 1
+Java runtime: <та же временная копия>/KbjuDiary/lib/runtime
+Корень данных: <тот же отдельный временный каталог данных>
+Файл SQLite: <тот же отдельный временный каталог данных>/data/nutrition-plans.db
+Код завершения: 0
+
+SQLite находился вне app-image. После проверки оба временных каталога удалены.

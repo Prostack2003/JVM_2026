@@ -1,0 +1,9 @@
+Команда:
+./gradlew --offline analyzeDependencies
+
+Вывод jdeps:
+com.fasterxml.jackson.databind,java.base,java.net.http,java.sql,javafx.controls,javafx.fxml,jdk.httpserver
+
+Вывод является исходной подсказкой, а не полным доказательством runtime.
+Фактический запуск потребовал также java.scripting; остальные модули app-image
+зафиксированы в build.gradle и проверены запуском JavaFX/FXML.

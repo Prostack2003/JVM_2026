@@ -1,0 +1,19 @@
+Команда:
+./gradlew --offline clean check verifyDistribution --warning-mode all
+
+Результат:
+- BUILD SUCCESSFUL;
+- 148 тестовых вызовов, 0 отказов;
+- специализированные проверки ServiceLoader, JAR и classpath-ресурсов пройдены;
+- предупреждений Gradle о deprecated API нет;
+- 20 задач: 19 выполнены, 1 up-to-date.
+
+Дополнительная команда:
+./gradlew --offline run --args="--smoke" --warning-mode all
+
+Результат:
+- BUILD SUCCESSFUL;
+- FXML и CSS загружены из classpath;
+- 3 поля формы связаны;
+- начальная строка прочитана из SQLite;
+- конфигурация, журнал и база доступны.
