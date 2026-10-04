@@ -1,0 +1,17 @@
+Команда:
+./gradlew --offline clean check verifyReleaseDocumentation --warning-mode all
+
+Результат:
+BUILD SUCCESSFUL
+JUnit XML suites: 31
+Тестовых вызовов: 154
+Failures: 0
+Errors: 0
+Skipped: 0
+
+Новые проверки:
+- ReleaseEvidenceTest: манифест 24.0.0 находится в classpath и содержит выпускные факты.
+- JavaFxUserJourneyTest.initialAuditMessageUsesCompleteWord: исправленный текст подтверждён через реальный FXML-контроллер.
+- verifyReleaseDocumentation: 15 обязательных документов найдены; ПР-01–ПР-05 имеют статус ПРОЙДЕНО.
+
+Дополнительно подтверждены Kotlin-класс, kotlin-stdlib, service descriptor, FXML, CSS и миграции в JAR.

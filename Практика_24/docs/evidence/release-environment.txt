@@ -1,0 +1,7 @@
+Проверено: 2026-10-04
+ОС: Linux 7.0.0-31-generic amd64
+Java: OpenJDK 25.0.4.1
+javac: 25.0.4.1
+Gradle Wrapper: 9.1.0
+Kotlin Gradle Plugin/stdlib проекта: 2.4.10
+Режим основного прогона: --offline

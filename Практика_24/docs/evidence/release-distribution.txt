@@ -1,0 +1,20 @@
+Команда:
+./gradlew --offline releaseAcceptance --warning-mode all
+
+Фактический результат:
+- app-image: build/package/KbjuDiary, приблизительно 117 МБ;
+- app-image скопирован вне исходников и запущен дважды;
+- первый процесс добавил запись через FXML-форму;
+- второй процесс нашёл сохранённую запись в той же SQLite;
+- Java runtime использован из app-image;
+- изменяемые .db и .log внутри установки отсутствуют;
+- платформа: linux/amd64;
+- BUILD SUCCESSFUL.
+
+Архив app-image:
+KbjuDiary-24.0.0-linux-amd64.tar.gz
+SHA-256: 7acd4f7a89e5d6ddedea0620e337fed25d8c5ea7032b5cbfb86363505fc862dd
+
+Финальный release bundle:
+KbjuDiary-24.0.0-release-bundle-linux-amd64.tar.gz
+Точная SHA-256 хранится в соседнем файле с суффиксом `.sha256`, чтобы архив не содержал самоссылочную контрольную сумму.
